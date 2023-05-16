@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="renderer" content="webkit">
+    <title>PT50 Active Key</title>
+    <link type="text/css" rel="stylesheet" href="resource/css/framework.css" />
+    <link type="text/css" rel="stylesheet" href="resource/css/main.css" />
+	<script src="jquery-1.8.3.min.js"></script>
+    <script src="jsencrypt.min.js"></script>
+</head>
+<body>
+<div class="page">
+
+
+<!--the main content begin-->
+	<div class="container">
+	<!--the content-->
+		<div class="ui grid">
+			
+			<div class="twelve wide column">
+				<div class="pageHeader">
+					<div class="segment">
+						<h3 class="ui dividing  header">
+  							<i class="large key icon"></i>
+  							<div class="content">
+    							PT50 激活码
+    							<div class="sub header">输入设备SN号，然后生成激活码</div>
+  							</div>
+						</h3>
+					</div>
+				</div>
+		
+                <form class="ui form attached fluid segment" action="/ueser/apikey_manage" name="form" method="post">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>设备SN</label>
+                            <textarea id="input_sn" name="input" type="text" rows=1 cols=70></textarea><br/>
+                        </div>
+                    </div>
+                    <div class="field">
+				<div id="testme2" class="ui small labeled icon red button"><i class="refresh icon"></i>生成激活码</div>
+                    </div>
+                </form>
+		<form class="ui form attached fluid segment" action="/ueser/apikey_manage" name="form" method="post">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>设备激活码</label>
+                            <div class="ui small left icon input">
+                              
+					<textarea hidden="hidden" id="pubkey" rows="15" cols="65">-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqgJcF2DRcAK1BB5oX6mL2EeW7Lcu+oW/eUqZDDiQFEPbUg9E+8QB0Jzj0ogGnovJ1nmkE3A3fJkaGypoh2zHHnv1h5Xb/QUhWDTQKMu6qDx0iQRjMLzP2tu6cJ1p6IBslvq5iJ2TU8j/7PtkysS29aX37kvmuDI3yNI45HPYYOylYAwHpwmORl0IOX5Et/HVs9eTU+f2IPhlNInshreSoDPLnhS5xTpkKs7y/6qPunIb+bRuGaN721j7nipx9Q/fg1BPb/03fB2v7pH8r6dT9VBqBtstlwlSb+4xm5zaavWvjbhIZcx0GhFMKH6Y40UCmtsdJm/qWXv70MU3vkFG4QIDAQAB
+-----END PUBLIC KEY-----</textarea>            </div>
+<textarea id="activekey" rows="25" cols="95"></textarea><br/>
+                        </div>
+                    </div>
+                    
+                </form>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+	
+	
+	$('.red.button')
+	.click(function() {
+		if ( $('#input_sn').val().trim().length != 0 ) {
+ 			var encrypt = new JSEncrypt();
+		
+          		encrypt.setPublicKey($('#pubkey').val());
+          		var encrypted = encrypt.encrypt($('#input_sn').val());
+			document.getElementById('activekey').value = encrypted;
+
+		} 
+         
+          
+          
+        });
+</script>
+</body>
+</html>
