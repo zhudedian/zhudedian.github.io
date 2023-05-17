@@ -39,9 +39,29 @@
          		 encrypt.setPublicKey($('#pubkey').val());
          		 var encrypted = encrypt.encrypt($('#input_sn').val());
 			document.getElementById('activekey').value = encrypted;
-         }
+        	 }else{
+			document.getElementById('activekey').value = "";
+		}
         });
+
+
       });
+	$(document).ready(function () {
+   		 $("input").keydown(function (event) {
+   	     if (event.keyCode == 13) {
+           	 if ( $('#input_sn').val().trim().length != 0 ) {
+          		// Encrypt with the public key...
+         		 var encrypt = new JSEncrypt();
+         		 encrypt.setPublicKey($('#pubkey').val());
+         		 var encrypted = encrypt.encrypt($('#input_sn').val());
+			document.getElementById('activekey').value = encrypted;
+         	}else{
+			document.getElementById('activekey').value = "";
+		}
+        }
+    });
+});
+
     </script>
 </head>
 <body>
@@ -73,7 +93,7 @@
 <div class="row">
 <div class="col-md-8">
 
-<input type="text" id="input_sn" placeholder="SN :">
+<input type="text" id="input_sn" onkeydown="search(event)" placeholder="SN :">
 
 </div>
 
@@ -84,14 +104,14 @@
 
 <div class="col-md-4">
 <div class="comment-form mt-45">
-<button type="submit" id="testme" class="main-btn">生成</button>
+<button type="submit" id="testme" class="main-btn">获取</button>
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="comment-form mt-45">
 <label>设备激活码</label>
-<textarea id="activekey" placeholder="激活码在这里生成"></textarea>
+<textarea id="activekey" placeholder="获取激活码在这里"></textarea>
 </div> 
 </div>
 <textarea hidden="hidden" id="pubkey" rows="15" cols="65">-----BEGIN PUBLIC KEY-----
