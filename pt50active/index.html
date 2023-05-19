@@ -32,7 +32,7 @@
       $(function() {
 
         // Run a quick encryption/decryption when they click.
-        $('#testme').click(function() {
+        $('#get_key').click(function() {
 		if ( $('#input_sn').val().trim().length != 0 ) {
           		// Encrypt with the public key...
          		 var encrypt = new JSEncrypt();
@@ -84,11 +84,11 @@
 <div class="col-lg-6">
 
 <div class="blog-details-comment-form pt-115">
-<h4 class="comment-form-title pb-10"><i class="lni-keyicon"></i> PT50 <span>激活码获取</span></h4>
+<h4 class="comment-form-title pb-10"><i class="lni-keyicon"></i> PT50 <span>Active Key</span></h4>
 <div class="row">
 <div class="col-md-12">
 <div class="comment-form mt-45">
-<label>设备SN号</label>
+<label>Device SN</label>
 
 <div class="row">
 <div class="col-md-8">
@@ -104,14 +104,14 @@
 
 <div class="col-md-4">
 <div class="comment-form mt-45">
-<button type="submit" id="testme" class="main-btn">获取</button>
+<button type="submit" id="get_key" class="main-btn">GET</button>
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="comment-form mt-45">
-<label>设备激活码</label>
-<textarea id="activekey" placeholder="获取激活码在这里"></textarea>
+<label>Device Active Key</label>
+<textarea id="activekey" placeholder="Active Key:"></textarea>
 </div> 
 </div>
 <textarea hidden="hidden" id="pubkey" rows="15" cols="65">-----BEGIN PUBLIC KEY-----
